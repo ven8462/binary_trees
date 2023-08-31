@@ -7,11 +7,15 @@
 */
 int binary_tree_is_perfect(const binary_tree_t *tree)
 {
+	int i = 1;
 
 	if (tree == NULL || binary_tree_balance(tree) !=  0)
 		return (0);
-	else
-		return (1);
+	if (tree->left)
+		i = i & binary_tree_is_perfect(tree->left);
+	if (tree->right)
+		i = i & binary_tree_is_perfect(tree->right);
+	return (i);
 }
 
 /**
